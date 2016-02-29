@@ -22,7 +22,7 @@ bar {
         status_command i3blocks -c /home/john/i3blocks/i3blocks.conf
 
 colors {
-        background #03152E
+        background #010F24
 	#status line is base text color
         statusline #0DA884
         separator #A63332   
