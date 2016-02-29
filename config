@@ -3,8 +3,9 @@
 #
 # Should you change your keyboard layout somewhen, delete
 # this file and re-run i3-config-wizard.
+#
 #############################################################
-#TROUBLESHOOTING.
+#TROUBLESHOOTING. 
 #
 #ICONS via FontAwesome
 #
@@ -21,21 +22,17 @@
 #Make sure the workspace you want to add a label to is closed. OR: take note of next line.
 #This sounds strange, but after $mod+r, give the icons some time to appear... or just restart the computer.
 #
-# use terminal commands 'xev' to discover the name of keys. 'xprop' to deterine class name of programs.
+# use terminal commands 'xev' to discover the name of keys. 'xprop' to deterine class name of programs. 'which' [program_name] to find location of program.
 #
 #Blocklets and Script trouble shooting for i3blocks may be found in the u3blocks.conf.
 #
 # Additional troubleshooting tips may be found directly above individual commands, in this file.
 #
-#End Of Main Troubleshooting.
+############End Of Main Troubleshooting.#############
 #
-#############################################################
-# i3 config file (v4)
-#
-# Please see http://i3wm.org/docs/userguide.html for a complete reference!
+# i3 config file (v4)  - Heavily Modified
 
-
-
+## FONT type and SIZE ###
 font pango:DejaVu Sans Mono 9
 #no#font pango:DroidSans 10
 #font pango:Inconsolata 9 
@@ -66,12 +63,10 @@ bindsym $mod+Return exec i3-sensible-terminal
 bindsym $mod+Shift+q kill
 
 # start dmenu (a program launcher)
+#The change, sets 5 lines verticle lines of dmenu.
 bindsym $mod+d exec dmenu_run -nb black -sb tomato -l 5
 
-
-# There also is the (new) i3-dmenu-desktop which only displays applications
-# shipping a .desktop file. It is a wrapper around dmenu, so you need that
-# installed.
+#original dmenu below#
 # bindsym $mod+d exec --no-startup-id i3-dmenu-desktop
 
 # change focus
@@ -121,6 +116,10 @@ bindsym $mod+a focus parent
 #Setting wallpaper - will randomize selection
 exec --no-startup-id feh --randomize --bg-fill ~/Pictures/Wallpapers/
 
+##########WORKSPACE Config BELOW###############################
+
+
+
 #Renaming workspaces
 set $workspace1 "1: "
 set $workspace2 "2:Rstudio"
@@ -162,6 +161,7 @@ bindsym $mod+Shift+x move container to workspace $workspacex
 
 #assigning applications to workspaces
 #in terminal used xprop to pull up cross bar and then click on a running application to learn CLASS name
+#Type class name here. Capitalization matters
 assign [class=Pidgin] $workspace3
 assign [class=RStudio] $workspace2
 assign [class=Pulseaudio-equalizer.py] $workspace4
@@ -169,11 +169,13 @@ assign [class=Rhythmbox] $workspace4
 #assign [class=google-chrome] $workspace3
 
 
-#Program and application bidings below
+##############Program and application bidings below#############
 
-#One key to Bind all, keys and bindings below.  (xprop to find class name);  which [name] to find file location
+
+#One key to Bind all, keys and bindings below.  (xprop to find class name);  'which' [name] to find file location
 # Mod+Shift+m for Media package.
-#WAS UNABLE TO MULTI-BIND a key, so Have made a line of keys, in the 'Functon row' - called Package. *Maybe best to save/reload a workspace..
+#WAS UNABLE TO MULTI-BIND a key, so Have made a line of keys, in the 'Function row' - below referred to as Package. 
+#Possible alternative - Maybe best to save/reload a workspace..
 
 #Media Package. Mod+Shift+[F5-F8]
 bindsym $mod+F5 exec "/usr/bin/pulseaudio-equalizer-gtk"
@@ -198,11 +200,11 @@ bindsym Print exec scrot $HOME/Pictures/Screenshots/`date +%Y-%m-%d_%H:%M:%S`.pn
 #bindsym $mod+Shift+Print exec scrot -s $HOME/Pictures/Screenshots/`date +%Y-%m-%d_%H:%M:%S`.png
 
 #FireFox
-#mod+q for Firefox because comfortable placed keys.
+#mod+q for Firefox. why? because comfortable placed keys.
 bindsym $mod+q exec "/usr/bin/firefox"
 bindsym $mod+Shift+f exec "/usr/bin/firefox"
 
-#Nautilus file manager - easier manipulation of folders
+#Nautilus file manager -manipulation of folders (manager used in ubuntu unity)
 bindsym $mod+F12 exec "/usr/bin/nautilus"
 
 #Gedit file editor - easier editing of files (config files especially)
@@ -212,7 +214,7 @@ bindsym $mod+F11 exec "/usr/bin/gedit"
 exec pidgin
 #exec RStudio
 #exec Firefox
-#I wonder if the below would go to a specific website
+#I wonder if I could createa a binding to load a specific website.
 #exec DuckDuckGo - Mozilla Firefox
 #exec WhatsApp Web - Mozilla Firefox
 
@@ -223,17 +225,20 @@ exec pacmd set-card-profile 0 output:analog-stereo
 bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume 0 -- +5% #increase sound volume
 bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume 0 -- -5% #decrease sound volume
 bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute 0 toggle # mute sound
-#Old Bindings
+
+#Old Sound Bindings Using F1-F2-F3 keys
 #bindsym $mod+F3 exec --no-startup-id pactl set-sink-volume 0 -- +5% #increase sound volume
 #bindsym $mod+F2 exec --no-startup-id pactl set-sink-volume 0 -- -5% #decrease sound volume
 #bindsym $mod+F1 exec --no-startup-id pactl set-sink-mute 0 toggle # mute sound
 
-## Screen brightness controls - make sure to apt-get xbacklight?
+## Current Screen brightness controls - make sure to apt-get xbacklight?
 bindsym Home exec xbacklight -inc 20 # increase screen brightness
 bindsym End exec xbacklight -dec 20 # decrease screen brightness
 #Old Bindings
 #bindsym $mod+F6 exec xbacklight -inc 20 # increase screen brightness
 #bindsym $mod+F5 exec xbacklight -dec 20 # decrease screen brightness
+
+###################### RESET, EXIT, And Window management BLEOW ########
 
 # reload the configuration file
 bindsym $mod+Shift+c reload
@@ -267,40 +272,41 @@ mode "resize" {
 }
 #
 #
-# The Terminal commands 'xev'  and 'xprop' are very helpful in figuring out the names of keys and programs.
 #
 #
-# From https://faq.i3wm.org/question/3747/enabling-multimedia-keys.1.html
-##
-## Set startup volume - is not working for me. need to install a depdncy?
-##pactl set-sink-volume 0 '20%' &
-##
-## DPMS monitor setting (standby -> suspend -> off) (seconds)  - DOES NOT WORK.
-#xset dpms 300 900 1080 &
+## DPMS monitor setting (standby -> suspend -> off) (seconds)  
+##- DOES NOT WORK.
+##xset dpms 300 900 1080 &
 
-#Resize sucks, I don't like it- probably because I dont understand it. Rstudio binding more useful.
+#Resize sucks, I don't like it- probably because I dont understand it. Rstudio binding is more useful.
 #bindsym $mod+r mode "resize"
 
-##COLORS 
+
+##################COLORS#####################
 
 #Large list of preconfigured color pallets: https://github.com/okraits/j4-make-config/tree/master/themes
 
-#This is a great website to see/get color codes: http://www.colorpicker.com/ff0088
+#This is a great website to visualize/get color codes: http://www.colorpicker.com/
 
-#Gray scale.
-#set $gray1 #373d48
-#set $gray2 #29303a
 
-#client.focused            $gray1   $gray1   #FFFFFF   $gray1
-#client.focused_inactive   $gray2   $gray2   #FFFFFF   #000000
-#3client.unfocused          $gray2   $gray2   #FFFFFF   #000000
+#Tranquil Deep color Palette
+#Self Created/modified
+#Darker bar color: 093333
 
+#			<border> <background> <text>	<?>
+client.focused            $1A4F00   $0D4F4F   #D3E1F5   $F20000
+
+#Defaults are better for the next two.
+#client.unfocused          #222423   #404E54   #788A79   #000000
+#client.focused_inactive   #222423   #879C93   #FFFFFF   #000000
 
 
 ##
 ## BAR  either i3blocks, or ibar with i3status.
 # Start i3bar to display a workspace bar - in terminal: i3status
 #make sure to set correct location for i3blocks config.
+#Background bar options: purple: 2E032A , teal: 0B4747
+
 bar {
 	#font pango:DejaVu Sans Mono, Icons 9
 	font pango:DroidSans, FontAwesome 9
@@ -308,5 +314,17 @@ bar {
 
         status_command i3blocks -c /home/john/i3blocks/i3blocks.conf
 
+colors {
+        background #03152E
+	#status line is base text color
+        statusline #0DA884
+        separator #A63332   
+#			 <border> <background> <text>
+        focused_workspace  #22A1E6 #285577 #EDCCCC
+        active_workspace   #504454 #504454 #ffffff
+        inactive_workspace #333333 #093333 #5B828F
+        urgent_workspace   #2f343a #900000 #ffffff
+    }
+       
 
 }
