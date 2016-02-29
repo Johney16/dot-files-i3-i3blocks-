@@ -1,0 +1,65 @@
+
+PREFACE:
+
+I should start out by saying that I am a noob when it comes it i3 and i3blocks. I had a fair amount of difficulty with obscure problems that had
+simple solutions.I also have a tendency to forget this, and so I am writing this as if I were talking to myself. 
+
+Below I have compiled a list of tips and solutions for i3/i3blocks configuration here, in hopes that it may help someone else.
+If something that I have written is incorrect or an undeal solution, please make a comment so that I can fix it.
+
+TROUBLESHOOTING:
+
+i3 main config $ I3 blocks,
+#
+#ICONS via FontAwesome
+
+#For icons/symbols. Download fontAwesome package. unpack it. move it to /usr/share/fonts/
+
+#yes, move the entire FontAwesome folder into the fonts directory. that is all.
+
+#then write the following code in the  [bar] area font pango:DroidSans, FontAwesome 9 - this enabled fonts for the bar.
+
+#Have not needed to write that code in this file - labels are showing up in workspaces just fine.
+#
+#lastly, copy and paste the actual icon that you want from the font awesome page. INTO.the label of i3blocks/or wherever you are implementing.
+#https://fortawesome.github.io/Font-Awesome/cheatsheet/
+#
+#NOTE! some icon (such as "music" notes) copy/paste as a code 'fi'. This is okay. just refresh i3 and take a look.
+#
+#
+#When renaming/labeling workspaces:
+#Make sure the workspace you want to add a label to is closed. - or just click navigate to the old label and close running applications there
+#This sounds strange, but after $mod+r, give the icons some time to appear... or just restart the computer.
+#
+#
+# CREATING SYSTEM KEY BINDINGS
+#
+# use terminal commands 'xev' to discover the name of keys. 'xprop' to deterine class name of programs.
+#
+#
+# 
+#Host i3 config file isn't directing to correct i3block config file. similar to next comment.
+#make sure bar is pointing to the correct i3blocks folder. 
+#
+#  i3 blocks Command - make sure that is pointing to the correct location!
+#
+#"command", on this page below, wasn't pointing to the correct directory - there were two i3blocks folders. one was erroneous.
+#
+#
+#
+#Solution:
+#OLD LOCATION
+#command=/usr/local/libexec/i3blocks/$BLOCK_NAME
+#
+#CURRENT Correct- NEW LOCATION
+#command=/home/john/i3blocks/blocklets/$BLOCK_NAME
+#
+# IN BLOCKLETS and SCRIPTS - make sure to set permission to execute. This can be found in properties.
+#Each blocklet file (e.g. bluetooth) need execute permission.
+#
+
+# Additional troubleshooting tips may be found directly above individual commands, in this file.
+#
+#End Of Main Troubleshooting.
+#
+#############################################################
