@@ -1,0 +1,39 @@
+Self contrusted
+Palette Title: Depths
+Descript: Dark blue and Green.
+
+#i3 config below
+
+#			<border> <background> <text>	<?>
+client.focused            $1A4F00   $0D4F4F   #D3E1F5   $F20000
+
+#darker header background color: 093333
+##dont run#3client.unfocused         $default   $default   #FFFFFF   #000000
+##dont run#client.focused_inactive   $default   $default   #FFFFFF   #000000
+
+#i3  blocks below (pasted in i3 config)
+
+
+bar {
+	#font pango:DejaVu Sans Mono, Icons 9
+	font pango:DroidSans, FontAwesome 9
+	#font pango:Inconsolata, FontAwesome 9
+
+        status_command i3blocks -c /home/john/i3blocks/i3blocks.conf
+
+colors {
+        background #03152E
+	#status line is base text color
+        statusline #0DA884
+        separator #A63332   
+#			 <border> <background> <text>
+        focused_workspace  #22A1E6 #285577 #EDCCCC
+        active_workspace   #504454 #504454 #ffffff
+        inactive_workspace #333333 #093333 #5B828F
+        urgent_workspace   #2f343a #900000 #ffffff
+    }
+       
+
+}  
+
+}
