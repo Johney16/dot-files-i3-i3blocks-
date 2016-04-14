@@ -32,6 +32,16 @@
 #
 # i3 config file (v4)  - Heavily Modified
 
+#
+# MultiMonitor - Presentation modes:
+#
+#Same output/screen
+# xrandr --output VGA1 --mode 1024x768 --same-as LVDS1
+#
+#  - Different output/screen
+## xrandr --output VGA1 --mode 1024x768 --right-of LVDS1
+#
+#
 ## FONT type and SIZE ###
 font pango:DejaVu Sans Mono 9
 #no#font pango:DroidSans 10
@@ -166,8 +176,17 @@ assign [class=Pidgin] $workspace3
 assign [class=RStudio] $workspace2
 assign [class=Pulseaudio-equalizer.py] $workspace4
 assign [class=Rhythmbox] $workspace4
+assign [class=libreoffice] $workspace5
 #assign [class=google-chrome] $workspace3
 
+#autostarting programs use exec and then the name  (usually lower case)
+exec pidgin
+exec --no-startup-id nm-applet
+#exec RStudio
+#exec Firefox
+#I wonder if I could createa a binding to load a specific website.
+#exec DuckDuckGo - Mozilla Firefox
+#exec WhatsApp Web - Mozilla Firefox
 
 ##############Program and application bidings below#############
 
@@ -177,22 +196,35 @@ assign [class=Rhythmbox] $workspace4
 #WAS UNABLE TO MULTI-BIND a key, so Have made a line of keys, in the 'Function row' - below referred to as Package. 
 #Possible alternative - Maybe best to save/reload a workspace..
 
-#Media Package. Mod+Shift+[F5-F8]
-bindsym $mod+F5 exec "/usr/bin/pulseaudio-equalizer-gtk"
-bindsym $mod+F6 exec "/usr/bin/rhythmbox"
-#bindsym $mod+F7 exec
+#presentation stuff  - Different output/screen
+bindsym $mod+p exec xrandr --output VGA1 --mode 1024x768 --right-of LVDS1
+#Presentation stuff - Same output/screen
+bindsym $mod+Shift+p exec xrandr --output VGA1 --mode 1024x768 --same-as LVDS1
+
 
 #Social package. Mod+Shift+ [F1-F4]
 bindsym $mod+F1 exec "/usr/local/bin/pidgin"
 #bindsym $mod+F2 exec
 #cannot double bind keys, I guess.
 
+#Media Package. Mod+Shift+[F5-F8]
+bindsym $mod+F5 exec "/usr/bin/pulseaudio-equalizer-gtk"
+bindsym $mod+F6 exec "/usr/bin/rhythmbox"
+#bindsym $mod+F7 exec
+
 #Work/Research Package. Mod+Shift[F9-F12]
-bindsym $mod+F9 exec "/usr/bin/rstudio"
+bindsym $mod+F9 exec "/usr/bin/libreoffice"
+
 
 #Additional bindings
-#rstudio - unbound resize function
+#rstudio - previously unbound resize function
 bindsym $mod+r exec "/usr/bin/rstudio"
+
+#Nautilus file manager -manipulation of folders (manager used in ubuntu unity)
+bindsym $mod+F12 exec "/usr/bin/nautilus"
+
+#Gedit file editor - easier editing of files (config files especially)
+bindsym $mod+F11 exec "/usr/bin/gedit"
 
 #Screenshot - uses scrot (need to apt get this)
 bindsym Print exec scrot $HOME/Pictures/Screenshots/`date +%Y-%m-%d_%H:%M:%S`.png
@@ -203,21 +235,6 @@ bindsym Print exec scrot $HOME/Pictures/Screenshots/`date +%Y-%m-%d_%H:%M:%S`.pn
 #mod+q for Firefox. why? because comfortable placed keys.
 bindsym $mod+q exec "/usr/bin/firefox"
 bindsym $mod+Shift+f exec "/usr/bin/firefox"
-
-#Nautilus file manager -manipulation of folders (manager used in ubuntu unity)
-bindsym $mod+F12 exec "/usr/bin/nautilus"
-
-#Gedit file editor - easier editing of files (config files especially)
-bindsym $mod+F11 exec "/usr/bin/gedit"
-
-#autostarting programs use exec and then the name  (usually lower case)
-exec pidgin
-#exec RStudio
-#exec Firefox
-#I wonder if I could createa a binding to load a specific website.
-#exec DuckDuckGo - Mozilla Firefox
-#exec WhatsApp Web - Mozilla Firefox
-
 
 # Pulse Audio controls
 exec pacmd set-card-profile 0 output:analog-stereo
@@ -232,8 +249,8 @@ bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute 0 toggle # mute s
 #bindsym $mod+F1 exec --no-startup-id pactl set-sink-mute 0 toggle # mute sound
 
 ## Current Screen brightness controls - make sure to apt-get xbacklight?
-bindsym Home exec xbacklight -inc 20 # increase screen brightness
-bindsym End exec xbacklight -dec 20 # decrease screen brightness
+bindsym Home exec xbacklight -inc 10 # increase screen brightness
+bindsym End exec xbacklight -dec 10 # decrease screen brightness
 #Old Bindings
 #bindsym $mod+F6 exec xbacklight -inc 20 # increase screen brightness
 #bindsym $mod+F5 exec xbacklight -dec 20 # decrease screen brightness
@@ -297,7 +314,7 @@ mode "resize" {
 client.focused            $1A4F00   $0D4F4F   #D3E1F5   $F20000
 
 #Defaults are better for the next two.
-#client.unfocused          #222423   #404E54   #788A79   #000000
+#client.unfocused          #222423   #203842   #6F7A70   #000000
 #client.focused_inactive   #222423   #879C93   #FFFFFF   #000000
 
 
@@ -305,7 +322,7 @@ client.focused            $1A4F00   $0D4F4F   #D3E1F5   $F20000
 ## BAR  either i3blocks, or ibar with i3status.
 # Start i3bar to display a workspace bar - in terminal: i3status
 #make sure to set correct location for i3blocks config.
-#Background bar options: purple: 2E032A , teal: 0B4747
+#Background bar options: purple: 240221 , teal: 0B4747
 
 bar {
 	#font pango:DejaVu Sans Mono, Icons 9
@@ -315,7 +332,7 @@ bar {
         status_command i3blocks -c /home/john/i3blocks/i3blocks.conf
 
 colors {
-        background #03152E
+        background #010F24
 	#status line is base text color
         statusline #0DA884
         separator #A63332   
@@ -327,4 +344,4 @@ colors {
     }
        
 
-}
+}  
