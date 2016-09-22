@@ -1,0 +1,46 @@
+#This is a great website to visualize/get color codes: http://www.colorpicker.com/
+
+#CURRENT unique COLOR THEME: Amexia
+#Self Created/modified
+#Darker bar color: 093333
+
+#			<border> <background> <text>	<?>
+client.focused            $730511   $200021   #D3E1F5   $F20000
+
+#Defaults are better for the next two.
+client.unfocused          #3D191D   #250326   #C3C5C7   #000000
+client.focused_inactive   #3D191D   #250326   #C3C5C7   #000000
+
+
+##
+## BAR  either i3blocks, or ibar with i3status.
+# to examine/display i3bar in terminal: i3status
+#make sure to set correct location for i3blocks config.
+#Background bar options: purple: 240221 , teal: 0B4747
+
+bar {
+	#font pango:DejaVu Sans Mono, Icons 9
+	font pango:DroidSans, FontAwesome 9
+	#font pango:Inconsolata, FontAwesome 9
+ 
+	status_command i3blocks -c /home/arch/i3blocks/i3blocks.conf
+	#default position is bottom
+	position top
+
+
+
+colors {
+	background #430A45
+	statusline #24C9C3
+
+
+        separator #730511   
+#			 <border> <background> <text>
+        focused_workspace  #780518 #2D052E #EDCCCC
+        active_workspace   #504454 #2D052E #ffffff
+        inactive_workspace #1C0307 #2D052E #5B828F
+        urgent_workspace   #2f343a #083828 #ffffff
+
+    }
+
+}  
