@@ -11,6 +11,70 @@ TROUBLESHOOTING:
 
 i3 main config $ I3 blocks,
 #
+
+
+#TROUBLESHOOTING. 
+#some functions require additional Packages: xbacklight (illumination control), amixer (sound control) ,scrot (screenshot), feh, (?).
+#other functions may be found in default ubuntu 16.x libraries?
+#
+#in order to get some LaTex libraries to load (soul.sty, or classicthesis.sty)- easiest way is to just download the large package: texlive-latex-extra
+#
+#ICONS via FontAwesome
+#
+#For icons/symbols. Download fontawesome package. unpack it. move it to /usr/share/fonts/
+#yes, move the entire FontAwesome folder into the fonts directory. that is all.
+#then write the following code in the  [bar] area font pango:DroidSans, FontAwesome 9
+#
+#lastly, copy and paste the actual icon that you want from the font awesome page here- or in i3blocks/or whatever bar. wherever you are implementing.
+#https://fortawesome.github.io/Font-Awesome/cheatsheet/
+#
+#NOTE! some icon (such as "music" notes) copy/paste as a code 'fi'. This is okay. just refresh i3, and take a look.
+#
+#Make sure the workspace you want to add a label to is closed. OR: take note of next line.
+#
+# use terminal commands 'xev' to discover the name of keys. 'xprop' to deterine class name of programs. 'which' [program_name] to find location of program.
+#
+#Blocklets and Script troubleshooting for i3blocks may be found in the u3blocks.conf.
+#
+# Additional troubleshooting tips may be found directly above individual commands, in this file.
+
+
+# MultiMonitor - Presentation modes: CODE to copy into Terminal!
+#
+#Terminal Code:  Same output/screen
+# xrandr --output VGA1 --mode 1024x768 --same-as LVDS1
+#
+#  - Different output/screen
+## xrandr --output VGA1 --mode 1024x768 --right-of LVDS1
+
+
+
+
+
+# Pulse Audio controls
+exec pacmd set-card-profile 0 output:analog-stereo
+#Current Bindings using keyboard's specific media buttons
+# volume controls
+bindsym XF86AudioRaiseVolume exec amixer -q  set Master playback 5%+ unmute
+bindsym XF86AudioLowerVolume exec amixer -q  set Master playback 5%- unmute
+
+#Mute command below isn't recommend. doesn't toggle. need to open pavucontrol to rectify
+#bindsym XF86AudioMute exec amixer -q set Master mute toggle
+
+#If Media keys are looking strange with 'xev' use this command to see what is going on: bindsym XF86AudioMute exec amixer -q set Master mute
+
+
+#PRE 16.04.01 - some issue with pulseaudio changes and amixer made these obsolete
+#bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume 0 -- +5% #increase sound volume
+#bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume 0 -- -5% #decrease sound volume
+#bindsym XF86AudioMute exec --no-startup-id pactl #set-sink-mute 0 toggle # mute sound
+
+## Current Screen brightness controls - make sure to apt-get xbacklight?
+bindsym Home exec xbacklight -inc 10 # increase screen brightness
+bindsym End exec xbacklight -dec 10 # decrease screen brightness
+
+
+##########OLD INFO#######as of sept 2016
 #ICONS via FontAwesome
 
 #For icons/symbols. Download fontAwesome package. unpack it. move it to /usr/share/fonts/
